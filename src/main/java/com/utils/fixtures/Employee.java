@@ -1,7 +1,16 @@
 package com.utils.fixtures;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 
+@AllArgsConstructor
+@ToString
+@Getter
+@NoArgsConstructor
 public class Employee {
 
     private int id;
@@ -10,42 +19,5 @@ public class Employee {
     private Address address;
     private List<String> roles;
 
-    public Employee(int id, boolean isFTE, String fname, Address address, List<String> roles) {
-        this.id = id;
-        this.isFTE = isFTE;
-        this.fname = fname;
-        this.address = address;
-        this.roles = roles;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public boolean isFTE() {
-        return isFTE;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", isFTE=" + isFTE +
-                ", fname='" + fname + '\'' +
-                ", address=" + address +
-                ", roles=" + roles +
-                '}';
-    }
 }

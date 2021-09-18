@@ -28,10 +28,9 @@ public final class PropertyUtils {
         }
         catch (FileNotFoundException e){
             //e.printStackTrace();
-            throw new RuntimeException("Problem with property file");
         }
         catch(IOException e){
-           // e.printStackTrace();
+            e.printStackTrace();
         }
         finally {
             try {

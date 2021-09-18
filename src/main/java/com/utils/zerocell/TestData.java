@@ -2,10 +2,14 @@ package com.utils.zerocell;
 
 import com.creditdatamw.zerocell.annotation.Column;
 import com.utils.enums.BrowserType;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@ToString
 public class TestData {
 
     //POJO
@@ -33,47 +37,4 @@ public class TestData {
     @Column(name="list",index = 7,convertorClass = StringToListConverter.class )
     private List<String> list;
 
-    @Override
-    public String toString() {
-        return "TestData{" +
-                "testcase='" + testcase + '\'' +
-                ", browser='" + browser + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", isFTE=" + isFTE +
-                ", age=" + age +
-                ", date=" + date +
-                ", phonenumber='" + phonenumber + '\'' +
-                '}';
-    }
-    public List<String> getList() {
-        return list;
-    }
-
-    public String getTestcase() {
-        return testcase;
-    }
-
-    public BrowserType getBrowser() {
-        return browser;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public boolean isFTE() {
-        return isFTE;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public String getPhonenumber() {
-        return phonenumber;
-    }
 }
