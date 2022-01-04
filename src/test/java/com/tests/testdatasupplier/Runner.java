@@ -1,4 +1,4 @@
-package com.tests.com.testdatasupplier;
+package com.tests.testdatasupplier;
 
 import com.utils.testdatasupplier.entity.User;
 import io.github.sskorol.core.DataSupplier;
