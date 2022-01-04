@@ -1,0 +1,54 @@
+package com.tests.com.testdatasupplier;
+
+import com.utils.testdatasupplier.entity.User;
+import io.github.sskorol.core.DataSupplier;
+import io.github.sskorol.data.CsvReader;
+import one.util.streamex.StreamEx;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.util.stream.Stream;
+
+import static io.github.sskorol.data.TestDataReader.use;
+
+public class Runner {
+
+    @Test(dataProvider = "getData")
+    public void testDemo(int a, int b, int c) {
+        System.out.println(a);
+    }
+
+    @DataSupplier(transpose = true)
+    public Stream<Integer> getData(){
+        return StreamEx.of(1,2,3); //3*1 -> 1*3
+    }
+
+
+    @Test(dataProvider = "getDataFromCSV")
+    public void testCSV(User user) {
+        System.out.println(user);
+    }
+
+    @DataSupplier(runInParallel = true)
+    public StreamEx<User> getDataFromCSV() throws IOException {
+        return use(CsvReader.class)
+                .withTarget(User.class)
+                .withSource("testdata.csv")
+                .read()
+                .limit(2);
+    }
+
+    @Test(dataProvider = "getDataAsFlatMap")
+    public void supplyNestedArrayData(String data,String data1) {
+        System.out.println(data);
+        System.out.println(data1);
+    }
+
+    @DataSupplier(flatMap = true)
+    public Stream<String[]> getDataAsFlatMap(){
+        return Stream
+                .of("Testing","Automation","Testingminibytes")
+                .map(e->new String[]{e, e+"test"});
+    }
+
+}

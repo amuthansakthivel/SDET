@@ -1,9 +1,6 @@
 package com.tests.fixtures;
 
-import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.utils.factory.PojoFactory;
-import com.utils.fixtures.Address;
 import com.utils.fixtures.Employee;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -12,7 +9,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.utils.factory.PojoFactory.*;
 import static io.restassured.RestAssured.given;
 
 public class PostEmployeeTests {
@@ -25,9 +21,9 @@ public class PostEmployeeTests {
     @DataProvider(parallel = true)
     public static Object[][] getData() {
         return new Object[][]{
-                {getObject("valid",Employee.class),201},
+                /*{getObject("valid",Employee.class),201},
                 {getObject("invalidid",Employee.class),500},
-                {getObject("invalidfname",Employee.class),201}
+                {getObject("invalidfname",Employee.class),201}*/
         };
     }
 
