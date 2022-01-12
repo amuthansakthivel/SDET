@@ -1,5 +1,6 @@
 package com.tests.zerocell;
 
+import com.utils.enums.BrowserType;
 import com.utils.factory.DriverFactory;
 import com.utils.zerocell.ExcelReader;
 import com.utils.zerocell.TestData;
@@ -16,17 +17,17 @@ public class ZeroCellTests {
     @Test(dataProvider = "getData")
     public void testcase1(TestData data){
         data.getList().forEach(System.out::println);
-        WebDriver driver = DriverFactory.getDriver(data.getBrowser());
+        WebDriver driver = DriverFactory.getDriver(BrowserType.CHROME);
         driver.get("https://google.co.in");
-        driver.findElement(By.name("q")).sendKeys(data.getFirstname());
+        driver.findElement(By.name("q")).sendKeys(data.getFirstName());
         driver.quit();
     }
     @Test(dataProvider = "getData")
     public void testcase2(TestData data){
         System.out.println(data.getBrowser());
-        WebDriver driver = DriverFactory.getDriver(data.getBrowser());
+        WebDriver driver = DriverFactory.getDriver(BrowserType.CHROME);
         driver.get("https://google.co.in");
-        driver.findElement(By.name("q")).sendKeys(data.getFirstname());
+        driver.findElement(By.name("q")).sendKeys(data.getFirstName());
         driver.quit();
     }
 
@@ -34,7 +35,7 @@ public class ZeroCellTests {
     public Object[] getData(Method method) {
         return ExcelReader.getTestdatas()
                 .stream()
-                .filter(e->e.getTestcase().equalsIgnoreCase(method.getName())) //testcase1
+                .filter(e->e.getTestCase().equalsIgnoreCase(method.getName())) //testcase1
                 .toArray();
     }
 

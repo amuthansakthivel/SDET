@@ -13,8 +13,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>10</source>
+                    <target>10</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -68,12 +68,6 @@
             <version>5.0.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.creditdatamw.labs</groupId>
-            <artifactId>zerocell-core</artifactId>
-            <version>0.3.2</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -90,7 +84,7 @@
         <dependency>
             <groupId>io.github.sskorol</groupId>
             <artifactId>test-data-supplier</artifactId>
-            <version>1.9.6</version>
+            <version>1.9.7</version>
         </dependency>
 
         <dependency>
@@ -98,6 +92,21 @@
             <artifactId>assertj-core</artifactId>
             <version>3.21.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.machinezoo.noexception/noexception -->
+        <dependency>
+            <groupId>com.machinezoo.noexception</groupId>
+            <artifactId>noexception</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
 
 
     </dependencies>

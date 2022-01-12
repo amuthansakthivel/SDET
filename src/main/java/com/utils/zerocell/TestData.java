@@ -1,7 +1,11 @@
 package com.utils.zerocell;
 
 import com.creditdatamw.zerocell.annotation.Column;
+import com.creditdatamw.zerocell.converter.BooleanConverter;
+import com.creditdatamw.zerocell.converter.IntegerConverter;
+import com.creditdatamw.zerocell.converter.LocalDateConverter;
 import com.utils.enums.BrowserType;
+import io.github.sskorol.data.Sheet;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -10,31 +14,29 @@ import java.util.List;
 
 @Getter
 @ToString
+@Sheet(name = "Sheet1")
 public class TestData {
 
     //POJO
-    @Column(name = "testcase", index=0 )
-    private String testcase;
+    @Column(name = "TC", index=0 )
+    private String testCase;
 
-    @Column(name = "browser", index=1 ,convertorClass = StringToBrowserTypeConverter.class)
-    private BrowserType browser;
+    @Column(name = "browser", index=1)
+    private String browser;
 
     @Column(name = "firstname", index=2 )
-    private String firstname;
+    private String firstName;
 
-    @Column(name = "isFTE", index=3,convertorClass = StringToBooleanConverter.class )
+    @Column(name = "isFTE", index=3, converterClass = BooleanConverter.class )
     private boolean isFTE;
 
-    @Column(name="age",index = 4,convertorClass = StringToIntegerConverter.class)
+    @Column(name="age",index = 4, converterClass = IntegerConverter.class)
     private int age;
 
-    @Column(name="date",index = 5,convertorClass = StringToLocalDateConverter.class)
-    private LocalDate date;
+    @Column(name="phonenumber",index = 5, converterClass = PhoneNumberProcessor.class )
+    private String phoneNumber;
 
-    @Column(name="date",index = 6,convertorClass = PhoneNumberProcessor.class )
-    private String phonenumber;
-
-    @Column(name="list",index = 7,convertorClass = StringToListConverter.class )
+    @Column(name="list",index = 6, converterClass = StringToListConverter.class )
     private List<String> list;
 
 }

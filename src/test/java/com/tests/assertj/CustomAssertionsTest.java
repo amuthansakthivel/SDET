@@ -4,7 +4,6 @@ import com.utils.assertj.entity.FavFoods;
 import com.utils.assertj.entity.Person;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class CustomAssertionsTest {
                 .hasHeaderCacheControlWithValueNoCache();
 
         PersonAssert.assertThat(responsePerson)
-                .hasName("abcd")
+                .hasName("abcdef")
                 .hasJobMatching(List.of("xyz", "qwe"));
     }
 }

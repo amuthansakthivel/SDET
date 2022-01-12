@@ -2,7 +2,6 @@ package com.tests.assertj;
 
 import io.restassured.response.Response;
 import org.assertj.core.api.AbstractAssert;
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 
 public class ResponseAssert extends AbstractAssert<ResponseAssert, Response> {
@@ -17,8 +16,10 @@ public class ResponseAssert extends AbstractAssert<ResponseAssert, Response> {
 
     public ResponseAssert isSuccessfulPostResponse(){ //response
         Assertions.assertThat(actual.getStatusCode())
-                .withFailMessage(()->"Status code is neither 200 nor 201")
-                .isBetween(200,201);
+                .as("Status code assertion")
+                .withFailMessage(() -> "Status code is neither 200 nor 201")
+                .isBetween(200, 201);
+
         return this;
     }
     public ResponseAssert hasHeaderApplicationJson(){

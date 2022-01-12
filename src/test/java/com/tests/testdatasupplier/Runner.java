@@ -1,12 +1,15 @@
 package com.tests.testdatasupplier;
 
 import com.utils.testdatasupplier.entity.User;
+import com.utils.zerocell.TestData;
 import io.github.sskorol.core.DataSupplier;
 import io.github.sskorol.data.CsvReader;
+import io.github.sskorol.data.XlsxReader;
 import one.util.streamex.StreamEx;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.stream.Stream;
 
 import static io.github.sskorol.data.TestDataReader.use;
@@ -51,4 +54,17 @@ public class Runner {
                 .map(e->new String[]{e, e+"test"});
     }
 
+
+    @Test(dataProvider = "getDataFromExcel")
+    public void testcase2(TestData testData) {
+        System.out.println(testData);
+    }
+
+    @DataSupplier
+    public StreamEx<TestData> getDataFromExcel(Method method){
+        return use(XlsxReader.class)
+                .withTarget(TestData.class)
+                .withSource("testdata.xlsx")
+                .read();
+    }
 }
