@@ -2,6 +2,7 @@ package com.tests.optional;
 
 import org.testng.annotations.Test;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class UseCase1Test {
@@ -21,6 +22,9 @@ public class UseCase1Test {
         Optional.ofNullable(System.getenv("browser")).orElseGet(this::getDefaultBrowser);*/
         Optional.ofNullable(System.getenv("browser"))
                 .orElseThrow(IllegalStateException::new);
+
+        Objects.requireNonNullElseGet(System.getenv("browser"),this::getDefaultBrowser);
+        Optional.ofNullable(System.getenv("browser")).orElseGet(this::getDefaultBrowser);
 
     }
     public String getDefaultBrowser(){

@@ -21,7 +21,7 @@ public class PostEmployeeTests {
     @DataProvider(parallel = true)
     public static Object[][] getData() {
         return new Object[][]{
-                /*{getObject("valid",Employee.class),201},
+              /*  {getObject("valid",Employee.class),201},
                 {getObject("invalidid",Employee.class),500},
                 {getObject("invalidfname",Employee.class),201}*/
         };

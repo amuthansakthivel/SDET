@@ -5,8 +5,20 @@ import org.aeonbits.owner.Config;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Config.Sources(value="file:${user.dir}/src/test/resources/FrameworkConfig.properties")
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({"system:properties",
+                "system:env",
+                "file:${user.dir}/src/test/resources/FrameworkConfig.properties",
+                "file:${user.dir}/src/test/resources/dev-config.properties",
+                "file:${user.dir}/src/test/resources/staging-config.properties"
+})
 public interface FrameworkConfig extends Config {
+
+    @DefaultValue("dev")
+    String environment();
+
+    @Key("${environment}.username")
+    String username();
 
     @DefaultValue("CHROME")
     BrowserType browser();
@@ -20,4 +32,18 @@ public interface FrameworkConfig extends Config {
     @Key("lovescoffee")
     boolean takescreenshot();
     List<String> favtools();
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
