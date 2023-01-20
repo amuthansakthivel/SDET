@@ -13,4 +13,4 @@ jobs:
           workflow_file_name: 3-web-test.yml
           ref: master
           propagate_failure: true
-          client_payload: '{"client_payload": ${{ toJson(github) }}}'
+          client_payload: '{"client_payload": "${{ toJson(github) }}"}'
