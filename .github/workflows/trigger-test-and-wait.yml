@@ -1,5 +1,8 @@
 name: trigger tests in another repository and wait for result
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
 jobs:
   trigger-test-and-wait:
     runs-on: ubuntu-latest
@@ -13,4 +16,4 @@ jobs:
           workflow_file_name: 3-web-test.yml
           ref: master
           propagate_failure: true
-          client_payload: '{"client_payload": "test", "TEST_ENV": "DEVELOP" , "SERVICE": "documents" , "TITLE": "Document Service Automated API Test Run Results"}'
+          client_payload: '{"client_payload": "test", "TEST_ENV": "DEVELOP"}'
