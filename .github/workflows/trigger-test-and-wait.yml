@@ -12,3 +12,4 @@ jobs:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow_file_name: repository-dispatch.yml
           ref: master
+          client_payload: '{"github": ${{ toJson(github) }}, "TEST_ENV": "DEVELOP" , "SERVICE": "documents" , "TITLE": "Document Service Automated API Test Run Results"}'
