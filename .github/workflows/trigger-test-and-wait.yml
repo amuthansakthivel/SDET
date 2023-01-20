@@ -13,4 +13,4 @@ jobs:
           workflow_file_name: repository-dispatch.yml
           ref: master
           propagate_failure: true
-          client_payload: '{}'
+          client_payload: '{"name":"amuthan"}'
