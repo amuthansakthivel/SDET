@@ -10,7 +10,7 @@ jobs:
           owner: amuthansakthivel
           repo: SeleniumAppiumTestsInGithubRunners
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          workflow_file_name: repository-dispatch.yml
+          workflow_file_name: 3-web-test.yml
           ref: master
           propagate_failure: true
-          client_payload: '{"name":"amuthan"}'
+          client_payload: '{"client_payload":{"github": ${{ toJson(github) }}, "TEST_ENV": "DEVELOP" , "SERVICE": "documents" , "TITLE": "Document Service Automated API Test Run Results"}}'
