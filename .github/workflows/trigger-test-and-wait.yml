@@ -1,0 +1,21 @@
+name: trigger tests in another repository
+on: workflow_dispatch
+jobs:
+  trigger-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger the automated test in another repo and wait for the result
+        uses: convictional/trigger-workflow-and-wait@v1.6.1
+        with:
+          owner: amuthansakthivel
+          repo: SeleniumAppiumTestsInGithubRunners
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          github_user: 'amuthan'
+          workflow_file_name: repository-dispatch.yml
+          ref: ${{ github.ref }}
+          wait_interval: 10
+          client_payload: '{"github": ${{ toJson(github) }}, "TEST_ENV": "DEVELOP" , "SERVICE": "documents" , "TITLE": "Document Service Automated API Test Run Results"}'
+          propagate_failure: true
+          trigger_workflow: true
+          wait_workflow: true
+
