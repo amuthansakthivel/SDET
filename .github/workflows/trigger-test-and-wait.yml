@@ -12,4 +12,5 @@ jobs:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
           workflow_file_name: repository-dispatch.yml
           ref: master
-          client_payload: '{"github": ${{ toJson(github) }}}'
+          propagate_failure: true
+          #client_payload: '{"github": ${{ toJson(github) }}}'
