@@ -10,4 +10,4 @@ jobs:
           owner: amuthansakthivel
           repo: SeleniumAppiumTestsInGithubRunners
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-
+          workflow_file_name: repository-dispatch.yml
