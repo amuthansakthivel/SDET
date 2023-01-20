@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger the automated test in another repo and wait for the result
-        uses: convictional/trigger-workflow-and-wait@v1.6.1
+        uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
           owner: amuthansakthivel
           repo: SeleniumAppiumTestsInGithubRunners
