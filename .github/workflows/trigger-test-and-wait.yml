@@ -10,11 +10,7 @@ jobs:
           owner: amuthansakthivel
           repo: SeleniumAppiumTestsInGithubRunners
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          github_user: 'amuthan'
           workflow_file_name: repository-dispatch.yml
-          ref: ${{ github.ref }}
-          wait_interval: 10
-          client_payload: '{"github": ${{ toJson(github) }}, "TEST_ENV": "DEVELOP" , "SERVICE": "documents" , "TITLE": "Document Service Automated API Test Run Results"}'
           propagate_failure: true
           trigger_workflow: true
           wait_workflow: true
