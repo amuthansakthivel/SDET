@@ -1,7 +1,7 @@
-name: trigger tests in another repository
+name: trigger tests in another repository and wait for result
 on: workflow_dispatch
 jobs:
-  trigger-test:
+  trigger-test-and-wait:
     runs-on: ubuntu-latest
     steps:
       - name: trigger the automated test in another repo and wait for the result
