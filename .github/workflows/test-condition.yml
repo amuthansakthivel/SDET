@@ -10,9 +10,9 @@ on:
 jobs:
   trigger-test-and-wait:
     runs-on: ubuntu-latest
-    if: contains(${{ GITHUB_HEAD_REF }} , 'release-web')
+    if: contains('${ GITHUB_HEAD_REF }' , 'release-web')
     steps:
-      - run: echo ${{ github.ref }}
+      - run: echo ${ GITHUB_HEAD_REF }
       - name: trigger the automated test in another repo and wait for the result
         uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
