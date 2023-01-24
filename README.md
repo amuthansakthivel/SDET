@@ -1,4 +1,2 @@
 # SDET
 SDET Tricks 123456
-
-456
