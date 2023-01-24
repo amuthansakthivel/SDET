@@ -10,9 +10,10 @@ on:
 jobs:
   trigger-test-and-wait:
     runs-on: ubuntu-latest
-    if: "contains( github.head_ref, 'release-web')"
+    if: "!contains( github.head_ref, 'release-web')"
     steps:
       - run: echo "${{ github.head_ref }}"
+      - run: exit 1
       
   dependent-job:
     needs: [ trigger-test-and-wait ]
