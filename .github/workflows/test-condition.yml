@@ -10,6 +10,6 @@ on:
 jobs:
   trigger-test-and-wait:
     runs-on: ubuntu-latest
-    #if: contains(${ GITHUB_HEAD_REF }, 'release-web')
+    if: contains(${{ github.head_ref }}, 'release-web')
     steps:
       - run: echo "${{ github.head_ref }}"
