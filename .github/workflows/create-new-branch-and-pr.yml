@@ -20,7 +20,7 @@ jobs:
       - name: create-pull-request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: $BRANCH_NAME                               
+          source_branch: "$BRANCH_NAME"                               
           destination_branch: "main"                     
           pr_title: "Pulling $BRANCH_NAME into main" 
           pr_body: |                                        # Full markdown support, requires pr_title to be set
