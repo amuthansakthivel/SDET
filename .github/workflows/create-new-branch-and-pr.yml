@@ -12,17 +12,19 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           
       - name: evaluate branch name
-        run: echo "BRANCH_NAME=release-web-$(date --iso-8601)" >> $GITHUB_ENV
+        id: branchname
+        run: echo "branch-name=release-web-$(date --iso-8601)" >> $GITHUB_OUTPUT
 
+      - run: echo ${{ steps.branchname.outputs.branch-name }}
       - name: Create new release branch
-        run: git push origin "development:$BRANCH_NAME"
+        run: git push origin "development:${{ steps.branchname.outputs.branch-name }}"
         
       - name: create-pull-request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: "$BRANCH_NAME"                               
+          source_branch: "${{ steps.branchname.outputs.branch-name }}"                               
           destination_branch: "main"                     
-          pr_title: "Pulling $BRANCH_NAME into main" 
+          pr_title: "Pulling ${{ steps.branchname.outputs.branch-name }} into main" 
           pr_body: |                                        # Full markdown support, requires pr_title to be set
             :crown: *An automated PR*
   
