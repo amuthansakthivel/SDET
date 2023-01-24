@@ -30,8 +30,11 @@ jobs:
           source_branch: "${{ steps.branch_name.outputs.branch-name }}"                               
           destination_branch: "main"                     
           pr_title: "Pulling ${{ steps.branch_name.outputs.branch-name }} into main" 
-          pr_body: |                                        
+          pr_body: |                              
+              :crown: *An automated PR created to release branch into main*
+              
               ${{ steps.pull_request_logs.outputs.pull-request-logs }}
+              
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }} 
           
       - name: Pull request url
