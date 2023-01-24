@@ -22,7 +22,7 @@ jobs:
         
       - name: muster pull request logs
         id: pull_request_logs
-        run:  echo "pull-request-logs=$(git log --cherry-pick --oneline origin/main...origin/development)" >> $GITHUB_OUTPUT
+        run:  echo "pull-request-logs=$(git log --cherry-pick --oneline origin/main... origin/development)" >> $GITHUB_OUTPUT
         
       - name: create-pull-request
         uses: repo-sync/pull-request@v2
@@ -32,6 +32,7 @@ jobs:
           pr_title: "Pulling ${{ steps.branch_name.outputs.branch-name }} into main" 
           pr_body: |                                        
               ${{ steps.pull_request_logs.outputs.pull-request-logs }}
-  
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }} 
           
-          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}      # If blank, default: secrets.GITHUB_TOKEN
+      - name: Pull request url
+        run: echo ${{steps.create-pull-request.outputs.pr_url}}     
