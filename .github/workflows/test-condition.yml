@@ -1,1 +1,25 @@
 
+name: trigger tests in another repository and wait for result
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+    types:
+      - opened
+      - edited  
+jobs:
+  trigger-test-and-wait:
+    runs-on: ubuntu-latest
+    if: contains(${{ github.ref }} , 'release-web')
+    steps:
+      - name: trigger the automated test in another repo and wait for the result
+        uses: convictional/trigger-workflow-and-wait@v1.6.5
+        with:
+          owner: amuthansakthivel #owner name of target repo
+          repo: SeleniumAppiumTestsInGithubRunners #target repo name
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }} #token with write access of target repo
+          workflow_file_name: 3-web-test.yml #github.yml filename in target repo
+          ref: master #branch name of target repo
+          propagate_failure: true
+          #client payload -> input parameters for target workflow
+          client_payload: '{"client_payload": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}" , "TEST_ENV": "DEVELOP"}'
