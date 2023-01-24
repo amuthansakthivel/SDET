@@ -12,21 +12,26 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           
       - name: evaluate branch name
-        id: branchname
+        id: branch_name
         run: echo "branch-name=release-web-$(date --iso-8601)" >> $GITHUB_OUTPUT
 
       - run: echo ${{ steps.branchname.outputs.branch-name }}
+      
       - name: Create new release branch
-        run: git push origin "development:${{ steps.branchname.outputs.branch-name }}"
+        run: git push origin "development:${{ steps.branch_name.outputs.branch-name }}"
+        
+      - name: muster pull request logs
+        id: pull_request_logs
+        run:  echo "pull-request-logs=$(git log --cherry-pick --oneline origin/main...origin/development)" >> $GITHUB_OUTPUT
         
       - name: create-pull-request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: "${{ steps.branchname.outputs.branch-name }}"                               
+          source_branch: "${{ steps.branch_name.outputs.branch-name }}"                               
           destination_branch: "main"                     
-          pr_title: "Pulling ${{ steps.branchname.outputs.branch-name }} into main" 
-          pr_body: |                                        # Full markdown support, requires pr_title to be set
-            :crown: *An automated PR*
+          pr_title: "Pulling ${{ steps.branch_name.outputs.branch-name }} into main" 
+          pr_body: |                                        
+              ${{ steps.pull_request_logs.outputs.pull-request-logs }}
   
-              _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
+          
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}      # If blank, default: secrets.GITHUB_TOKEN
