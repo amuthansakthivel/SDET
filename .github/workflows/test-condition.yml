@@ -6,6 +6,7 @@ on:
     branches: [ main ]
     types:
       - opened
+      - edited
  
 jobs:
   trigger-test-and-wait:
