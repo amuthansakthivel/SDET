@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: development
-          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Create new release branch
         run: |
@@ -39,7 +39,7 @@ jobs:
             ## Description
             ### What changes were made?
             ${{ env.PULL_REQUEST_LOGS }}
-          github_token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Pull request url
         run: echo ${{steps.create-pull-request.outputs.pr_url}}
