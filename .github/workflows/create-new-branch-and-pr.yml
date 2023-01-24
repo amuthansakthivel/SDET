@@ -1,0 +1,15 @@
+name: create new branch and pr
+
+on: workflow_dispatch
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: development
+          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+
+      - name: Create new release branch
+        run: git push origin "development:release-web-$(date --iso-8601)"
