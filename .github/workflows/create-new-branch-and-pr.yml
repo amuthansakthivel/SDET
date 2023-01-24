@@ -10,16 +10,19 @@ jobs:
         with:
           ref: development
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          
+      - name: evaluate branch name
+        run: echo "BRANCH_NAME=release-web-$(date --iso-8601)" >> $GITHUB_ENV
 
       - name: Create new release branch
-        run: git push origin "development:release-web-$(date --iso-8601)"
+        run: git push origin "development:$BRANCH_NAME"
         
       - name: create-pull-request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: "release-web-2023-01-24"                               
+          source_branch: $BRANCH_NAME                               
           destination_branch: "main"                     
-          pr_title: "Pulling release-web-$(date --iso-8601) into master" 
+          pr_title: "Pulling $BRANCH_NAME into main" 
           pr_body: |                                        # Full markdown support, requires pr_title to be set
             :crown: *An automated PR*
   
