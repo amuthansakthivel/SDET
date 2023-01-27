@@ -18,7 +18,7 @@ jobs:
 
       - name: evaluate branch name
         id: branch_name
-        run: echo "branch-name=release-web-$(date --iso-8601)" >> $GITHUB_OUTPUT
+        run: echo "branch-name=release-mobile-$(date --iso-8601)" >> $GITHUB_OUTPUT
 
       - name: print branch name
         run: echo ${{ steps.branchname.outputs.branch-name }}
