@@ -1,4 +1,4 @@
-name: trigger tests in another repository and wait for result
+name: wait for api
 on:
   workflow_dispatch:
   
