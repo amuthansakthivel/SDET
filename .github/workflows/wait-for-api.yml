@@ -1,0 +1,15 @@
+name: trigger tests in another repository and wait for result
+on:
+  workflow_dispatch:
+  
+jobs:
+  waut-until-build-is-success:
+    runs-on: ubuntu-latest
+    steps:
+      - name: wait for apk/ipa file to be ready
+        uses: mydea/action-wait-for-api@v1
+        with:
+          url: "https://api.bitrise.io/v0.1/apps/48c77c487e66ff97/builds?sort_by=running_first&workflow=release&limit=1"
+          headers: '{"accept", "application/json", "Authorization":"${{ secrets.BITRISE_TOKEN }}"}'
+          expected-response-field: "x.data[0].status_text"
+          expected-response-field-value: "success"
