@@ -8,5 +8,5 @@ jobs:
     steps:
       - name: wait for apk/ipa file to be ready
         run: |
-          STATUS_TEXT=$(curl -X GET "https://api.bitrise.io/v0.1/apps/48c77c487e66ff97/builds?sort_by=running_first&workflow=release&limit=1" -H "accept:application/json" -H "Authorization:${{ secrets.BITRISE_TOKEN }}" | ".data[0] .status_text")
+          STATUS_TEXT=$(curl -X GET "https://api.bitrise.io/v0.1/apps/48c77c487e66ff97/builds?sort_by=running_first&workflow=release&limit=1" -H "accept:application/json" -H "Authorization:${{ secrets.BITRISE_TOKEN }}" | jq ".data[0] .status_text")
           echo $STATUS_TEXT
