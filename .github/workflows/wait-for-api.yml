@@ -11,6 +11,6 @@ jobs:
         with:
           url: "https://api.bitrise.io/v0.1/apps/48c77c487e66ff97/builds?sort_by=running_first&workflow=release&limit=1"
           headers: '{"accept":"application/json", "Authorization":"${{ secrets.BITRISE_TOKEN }}"}'
-          timeout: "60"
-          expected-response-field: ".data[0].status_text"
+          timeout: "40"
+          expected-response-field: "data[0].status_text"
           expected-response-field-value: "success"
