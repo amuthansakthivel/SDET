@@ -8,8 +8,10 @@ jobs:
     steps:
       - name: wait for apk/ipa file to be ready
         run: |
-          sleep 10s
-          for i in {1..4}; do
+          sleep 5m
+          for i in {1..3}; do
+            sleep 10m
             BUILD_STATUS=$(curl -X GET "https://api.bitrise.io/v0.1/apps/48c77c487e66ff97/builds?sort_by=running_first&workflow=release&limit=1" -H "accept:application/json" -H "Authorization:${{ secrets.BITRISE_TOKEN }}" | jq ".data[0] .status")
-            [[ "${BUILD_STATUS}" != "0" ]] && continue || break
+            [[ "${BUILD_STATUS}" != "1" ]] && continue || break
           done  
+          [[ "${BUILD_STATUS}" != "1" ]] && exit 1
