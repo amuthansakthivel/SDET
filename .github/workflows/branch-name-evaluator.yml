@@ -1,4 +1,4 @@
-name: wait for api
+name: branch name evaluator
 on:
   workflow_dispatch:
   pull_request:
