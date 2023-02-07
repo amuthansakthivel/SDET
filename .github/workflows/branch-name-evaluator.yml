@@ -1,0 +1,14 @@
+name: wait for api
+on:
+  workflow_dispatch:
+  pull_request:
+    branches : [ main ]
+  
+jobs:
+  waut-until-build-is-success:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print github context
+        run: |
+          echo '${{ github.head_ref }}'
+          echo '${{ github.ref }}'
