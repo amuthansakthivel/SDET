@@ -10,5 +10,5 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: amuthansakthivel/SeleniumAppiumTestsInGithubRunners
           event-type: my-event
-          client-payload: '{"github": ${{ toJson(github) }}}'
+          client-payload: '{"github": ${{ toJson(github) }}, "TEST_ENV": "development" , "SERVICE": "smoke"}'
 
